@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes Estadísticos - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li class="active"><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Reportes de Llamados y Estadísticas</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info"><span>Administrador</span><strong>Acceso Irrestricto</strong></div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Estado de Llamados</h3>
+                    <div class="card-value" style="color: #2e7d32;">Registrados</div>
+                </div>
+            </div>
+            <div style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button class="btn btn-primary">📥 Exportar PDF</button>
+                <button class="btn btn-secondary">📥 Exportar CSV</button>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Área / Origen</th>
+                            <th>Tipo de Llamado</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-reportes">
+                        <!-- Se llena dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

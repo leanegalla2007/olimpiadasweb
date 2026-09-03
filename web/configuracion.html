@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración de Áreas - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">📊 Monitoreo General</a></li>
+                <li class="active"><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Configuración de Áreas y Zonas</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info"><span>Administrador</span><strong>Acceso Irrestricto</strong></div>
+            </div>
+        </header>
+        <div class="content">
+            <div style="margin-bottom: 20px;">
+                <a href="nueva-area.html" class="btn btn-primary" style="text-decoration: none;">+ Nueva Área / Invernadero</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre de Área</th>
+                            <th>Origen</th>
+                            <th>Administrador Asignado</th>
+                            <th>Sensores Arduino</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-areas">
+                        <!-- Se llena dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Nuevo Evento - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Registro de Nuevo Evento / Llamado</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info">
+                    <span>Administrador</span>
+                    <strong>Acceso Irrestricto</strong>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="form-container">
+                <form>
+                    <div class="form-group">
+                        <label>Área o Invernadero de Origen:</label>
+                        <select>
+                            <option>Invernadero Principal</option>
+                            <option>Sector Hidroponia</option>
+                            <option>Vivero Externo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Llamado:</label>
+                        <select>
+                            <option>Normal (Reporte de empleado)</option>
+                            <option style="color: red;">Emergencia (Alerta de Arduino / Falla)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción del Evento:</label>
+                        <textarea rows="4" placeholder="Describa el inconveniente o evento registrado..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Evento</button>
+                    <a href="index.html" class="btn btn-secondary" style="margin-left: 10px;">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

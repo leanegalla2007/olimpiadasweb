@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atender Alerta - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Atención de Emergencia / Alerta Activa</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info">
+                    <span>Administrador</span>
+                    <strong>Acceso Irrestricto</strong>
+                </div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="form-container" style="border-left: 5px solid #dc2626;">
+                <h3 style="color: #dc2626; margin-bottom: 10px;">🚨 Alerta Crítica Detectada</h3>
+                <p style="margin-bottom: 20px; color: #475569;">Área: <strong>Sector Hidroponia</strong> | Sensor: <strong>Sensor de Nivel / pH</strong></p>
+                <form>
+                    <div class="form-group">
+                        <label>Acción Correctiva Aplicada:</label>
+                        <textarea rows="3" placeholder="Describa cómo se resolvió la emergencia..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado Final:</label>
+                        <select>
+                            <option>Resuelto y Atendido</option>
+                            <option>Derivado a Mantenimiento</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="background-color: #dc2626;">Registrar como Atendido</button>
+                    <a href="index.html" class="btn btn-secondary" style="margin-left: 10px; text-decoration: none;">Volver</a>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

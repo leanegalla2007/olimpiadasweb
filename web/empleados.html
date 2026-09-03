@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Empleados - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li class="active"><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Ficha y Datos Personales de Empleados</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info"><span>Administrador</span><strong>Acceso Irrestricto</strong></div>
+            </div>
+        </header>
+        <div class="content">
+            <div style="margin-bottom: 20px;">
+                <a href="nuevo-empleado.html" class="btn btn-primary" style="text-decoration: none;">+ Crear Ficha de Empleado</a>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Tarea Asignada</th>
+                            <th>Horario</th>
+                            <th>Tipo de Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-empleados">
+                        <!-- Se llena dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>

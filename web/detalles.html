@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles Técnicos - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Detalles Técnicos del Sensor (Arduino)</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info"><span>Administrador</span><strong>Acceso Irrestricto</strong></div>
+            </div>
+        </header>
+        <div class="content">
+            <div class="form-container" style="max-width: 800px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Invernadero Principal - Sensor DHT22</h3>
+                <p style="margin-bottom: 20px; color: #64748b;">Información en tiempo real recolectada por el microcontrolador.</p>
+                <table style="margin-bottom: 20px;">
+                    <tr><th>Parámetro</th><th>Valor Registrado</th><th>Estado</th></tr>
+                    <tr><td>Temperatura</td><td>24.5 °C</td><td><span style="color: #2e7d32; font-weight: bold;">Normal</span></td></tr>
+                    <tr><td>Humedad</td><td>65%</td><td><span style="color: #2e7d32; font-weight: bold;">Normal</span></td></tr>
+                    <tr><td>Última Sincronización</td><td colspan="2">02/09/2026 - 14:50 hs</td></tr>
+                </table>
+                <a href="index.html" class="btn btn-secondary" style="text-decoration: none;">← Volver al Dashboard</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

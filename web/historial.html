@@ -1,0 +1,66 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial General - Parque Ambiental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li class="active"><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Historial General de Cambios y Usuarios</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info"><span>Administrador</span><strong>Acceso Irrestricto</strong></div>
+            </div>
+        </header>
+        <div class="content">
+            <p style="margin-bottom: 20px; color: #64748b;">Registro de altas, bajas, modificaciones de horarios y ascensos de jerarquía de usuarios.</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <th>Usuario / Empleado</th>
+                            <th>Tipo de Evento</th>
+                            <th>Detalle del Cambio</th>
+                            <th>Autorizado por</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>02/09/2026 - 15:10</td>
+                            <td>Lauryn Rivero</td>
+                            <td><span style="color: #0284c7; font-weight: bold;">Modificación de Ficha</span></td>
+                            <td>Cambio de horario: de 08:00-12:00 a 10:00-14:00 hs</td>
+                            <td>Administrador</td>
+                        </tr>
+                        <tr>
+                            <td>02/09/2026 - 14:20</td>
+                            <td>Carlos Gómez</td>
+                            <td><span style="color: #e65100; font-weight: bold;">Cambio de Jerarquía</span></td>
+                            <td>Ascenso de Genérico a Administrador (vía clave)</td>
+                            <td>Sistema (Ctrl + Shift + A)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
