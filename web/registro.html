@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Datos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Asegura que el padding no desborde */
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Ingreso de Datos</h2>
+        <form id="registroForm">
+            
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required placeholder="Ej. Pérez">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="number" id="dni" name="dni" required placeholder="Sin puntos ni espacios">
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" name="direccion" required placeholder="Calle y número">
+            </div>
+
+            <div class="form-group">
+                <label for="zona_trabajo">Zona de Trabajo</label>
+                <input type="text" id="zona_trabajo" name="zona_trabajo" required placeholder="Barrio o ciudad">
+            </div>
+
+            <div class="form-group">
+                <label for="ocupacion">De qué trabaja</label>
+                <input type="text" id="ocupacion" name="ocupacion" required placeholder="Profesión u oficio">
+            </div>
+
+            <button type="submit" class="btn-submit">Guardar Datos</button>
+        </form>
+    </div>
+
+    <script>
+        // Este script evita que la página se recargue y muestra un mensaje al enviar
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            alert('¡Datos guardados correctamente!');
+            this.reset(); // Limpia el formulario
+        });
+    </script>
+
+</body>
+</html>

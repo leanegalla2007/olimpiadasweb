@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parque Ambiental - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside>
+        <div>
+            <div class="sidebar-header">
+                <h2>🌱 Parque Ambiental</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="panelcontrol.html">📊 Monitoreo General</a></li>
+                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
+                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
+                <li><a href="historial.html">📜 Historial General</a></li>
+                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <main>
+        <header class="top-navbar">
+            <div class="nav-brand-title">Panel de Control de Invernaderos</div>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <div class="user-info">
+                    <span>Administrador</span>
+                    <strong>Acceso Irrestricto</strong>
+                </div>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Temperatura (Invernadero 1)</h3>
+                    <div class="card-value" style="color: #2e7d32;">24.5 °C</div>
+                </div>
+                <div class="card">
+                    <h3>Humedad Relativa</h3>
+                    <div class="card-value" style="color: #0284c7;">68 %</div>
+                </div>
+                <div class="card">
+                    <h3>Llamados de Emergencia</h3>
+                    <div class="card-value" style="color: #dc2626;">1 Activo</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 25px; display: flex; gap: 12px;">
+                <a href="nuevo-evento.html" class="btn btn-primary">➕ Registrar Nuevo Evento</a>
+                <a href="index.html" class="btn btn-secondary">🔄 Actualizar Sensores</a>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Área / Origen</th>
+                            <th>Sensor Arduino</th>
+                            <th>Estado Actual</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Invernadero Principal</td>
+                            <td>DHT22 (Temp/Hum)</td>
+                            <td><span style="color: #2e7d32; font-weight: bold;">Óptimo</span></td>
+                            <td><a href="detalles.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none;">Ver Detalles</a></td>
+                        </tr>
+                        <tr>
+                            <td>Sector Hidroponia</td>
+                            <td>Sensor de Nivel / pH</td>
+                            <td><span style="color: #dc2626; font-weight: bold;">Alerta de Nivel</span></td>
+                            <td><a href="atender-alerta.html" class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none;">Atender</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

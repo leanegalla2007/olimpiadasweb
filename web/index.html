@@ -3,85 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parque Ambiental - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Iniciar Sesión</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
+        }
+        .login-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff; /* Color azul para diferenciarlo del botón verde de guardar */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+        </style>
+        
 </head>
 <body>
-    <aside>
-        <div>
-            <div class="sidebar-header">
-                <h2>🌱 Parque Ambiental</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li class="active"><a href="index.html">📊 Monitoreo General</a></li>
-                <li><a href="configuracion.html">⚙️ Configuración y Áreas</a></li>
-                <li><a href="empleados.html">👥 Ficha de Empleados</a></li>
-                <li><a href="historial.html">📜 Historial General</a></li>
-                <li><a href="reportes.html">📈 Reportes Estadísticos</a></li>
-            </ul>
-        </div>
-    </aside>
 
-    <main>
-        <header class="top-navbar">
-            <div class="nav-brand-title">Panel de Control de Invernaderos</div>
-            <div class="user-profile">
-                <div class="avatar">AD</div>
-                <div class="user-info">
-                    <span>Administrador</span>
-                    <strong>Acceso Irrestricto</strong>
-                </div>
-            </div>
-        </header>
-
-        <div class="content">
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Temperatura (Invernadero 1)</h3>
-                    <div class="card-value" style="color: #2e7d32;">24.5 °C</div>
-                </div>
-                <div class="card">
-                    <h3>Humedad Relativa</h3>
-                    <div class="card-value" style="color: #0284c7;">68 %</div>
-                </div>
-                <div class="card">
-                    <h3>Llamados de Emergencia</h3>
-                    <div class="card-value" style="color: #dc2626;">1 Activo</div>
-                </div>
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" required placeholder="Ingresá tu usuario">
             </div>
 
-            <div style="margin-bottom: 25px; display: flex; gap: 12px;">
-                <a href="nuevo-evento.html" class="btn btn-primary">➕ Registrar Nuevo Evento</a>
-                <a href="index.html" class="btn btn-secondary">🔄 Actualizar Sensores</a>
+            <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingresá tu contraseña">
             </div>
 
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Área / Origen</th>
-                            <th>Sensor Arduino</th>
-                            <th>Estado Actual</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Invernadero Principal</td>
-                            <td>DHT22 (Temp/Hum)</td>
-                            <td><span style="color: #2e7d32; font-weight: bold;">Óptimo</span></td>
-                            <td><a href="detalles.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none;">Ver Detalles</a></td>
-                        </tr>
-                        <tr>
-                            <td>Sector Hidroponia</td>
-                            <td>Sensor de Nivel / pH</td>
-                            <td><span style="color: #dc2626; font-weight: bold;">Alerta de Nivel</span></td>
-                            <td><a href="atender-alerta.html" class="btn btn-danger" style="padding: 6px 12px; font-size: 0.8rem; text-decoration: none;">Atender</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </main>
+            <button type="submit" class="btn-submit">Ingresar</button>
+        </form>
+        <form id="registroForm">
+            <button type="submit" class="btn-submit">Registrar cuenta</button>
+        </form>
+    </div>
+
 </body>
+                    <script>
+                // Este script simula el inicio de sesión y te lleva a la otra página
+                document.getElementById('registroForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Evita que la página intente enviar datos a un servidor inexistente
+                    
+                    // Acá hacemos la "conexión". Al hacer clic, te redirige al formulario.
+                    // Es importante que el otro archivo se llame exactamente 'formulario.html'
+                    window.location.href = 'registro.html'; 
+                });
+            </script>
 </html>
