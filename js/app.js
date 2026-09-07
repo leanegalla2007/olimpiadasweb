@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const cors = require("cors");
 require ('dotenv').config();
  // Importas tus rutas separadas
-const panolRoutes = require("./routes/panolRoutes");
+const parqueRoutes = require("./routes/parqueRoutes");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.static('public'));
 
 // Conectas las rutas al servidor
-app.use("/api", panolRoutes);
+app.use("/api", parqueRoutes);
 
 app.listen(3000, () => console.log("Servidor corriendo en http://localhost:3000"));
 
@@ -22,7 +22,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "panol_db"
+  database: "parque_db"
 });
 
 // --- LÓGICA DE ALMACENAMIENTO (LOCALSTORAGE) ---

@@ -34,7 +34,7 @@
         </header>
         <div class="content">
             <div class="form-container">
-                <form onsubmit="registrarArea(event)">
+                <form id="form-area" onsubmit="registrarArea(event)">
                     <div class="form-group">
                         <label>Nombre del Área / Invernadero:</label>
                         <input type="text" id="area-nombre" placeholder="Ej: Invernadero 2" required>
@@ -63,7 +63,18 @@
     </main>
     <script src="js/app.js"></script>
     <script>
-        
+        document.getElementById("form-area").addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const origen = document.getElementById('origen').value;
+            const admin = document.getElementById('admin').value;
+            const sensores = document.getElementById('sensores').value;
+
+            try {
+                const respuest
+            }
+        })
 
     </script>
 </body>

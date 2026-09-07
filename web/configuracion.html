@@ -32,6 +32,7 @@
         <div class="content">
             <div style="margin-bottom: 20px;">
                 <a href="nueva-area.html" class="btn btn-primary" style="text-decoration: none;">+ Nueva Área / Invernadero</a>
+                <button type="submit" class="btn btn-primary" style="text-decoration: none;" onclick="cargarLista()">Actualizar</button>
             </div>
             <div class="table-container">
                 <table>
@@ -44,12 +45,47 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-areas">
-                        <!-- Se llena dinámicamente -->
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">Cargando Lista de las Areas...</td>
+                        </tr><!-- Se llena dinámicamente -->
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
     <script src="js/app.js"></script>
+    <script>
+        const API_URL = 'http://localhost:3000/api/areas';
+        
+        async function cargarLista() {
+            const tabla = document.getElementById("tabla-areas")  
+            try {   
+                tabla.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-4">Actualizando lista... </td></tr>`;
+                const respuesta = await fetch (API_URL);
+                const areas = await respuesta.json();    
+                tabla.innerHTML = '';
+
+                areas.forEach(areas =>{
+                    const fila = document.createArea('tr');
+
+                    fila.innerHTML = `
+                    <td>${areas.id}</td>
+                    <td>${areas.nombre}</td>
+                    <td>${areas.origen}</td>
+                    <td>${areas.sensores}</td>
+                    `
+                    tabla.appendChild(fila)
+                    });
+                if (areas.length === 0) {
+                    tabla.innerHTML = `<tr><td colspan="colspan" class="text-center py-4">No hay areas cargadas. </td></tr>`;
+                    return;
+                }
+            }catch (error) {
+                console.error(error);
+                tabla.innerHTML = `<tr><td colspan='4' class 'text-center text-danger py-4'>Error al conectar con la API.</td></tr>`
+            }
+        }
+
+    </script>
 </body>
 </html>
