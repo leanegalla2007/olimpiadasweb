@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group">
-                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                <label for="fecha_nac">Fecha de Nacimiento</label>
                 <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
             </div>
 
@@ -37,23 +37,23 @@
             </div>
 
             <div class="form-group">
-                <label for="zona_trabajo">Zona de Trabajo</label>
-                <input type="text" id="zona_trabajo" name="zona_trabajo" required placeholder="Barrio o ciudad">
+                <label for="lugar_trabajo">Zona de Trabajo</label>
+                <input type="text" id="zona_trabajo" name="zona_trabajo" required placeholder="Lugar destinado en el vivero">
             </div>
 
             <div class="form-group">
-                <label for="ocupacion">De qué trabaja</label>
+                <label for="especialidad">De qué trabaja</label>
                 <input type="text" id="ocupacion" name="ocupacion" required placeholder="Profesión u oficio">
             </div>
 
             <div class="form-group">
-                <label for="ocupacion">Nombre de usuario</label>
-                <input type="text" id="ocupacion" name="ocupacion" required placeholder="Nombre para iniciar sesión">
+                <label for="nombre_usuario">Nombre de usuario</label>
+                <input type="text" id="nombre_usuario" name="ocupacion" required placeholder="Nombre para iniciar sesión">
             </div>
 
              <div class="form-group">
-                <label for="ocupacion">Contraseña</label>
-                <input type="text" id="ocupacion" name="ocupacion" required placeholder="Contraseña para crear cuenta">
+                <label for="contraseña">Contraseña</label>
+                <input type="text" id="contraseña" name="ocupacion" required placeholder="Contraseña para crear cuenta">
             </div>
 
             <button type="submit" class="btn-submit">Guardar Datos</button>
@@ -61,12 +61,54 @@
     </div>
 
     <script>
-        // Este script evita que la página se recargue y muestra un mensaje al enviar
-        document.getElementById('registroForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            alert('¡Datos guardados correctamente!');
-            this.reset(); // Limpia el formulario
+         const API_URL = 'http://localhost:3000/api/registro';
+
+
+        document.getElementById("registroForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const datosNuevoUsuario = {
+        nombre: document.getElementById("nombre").value,
+        apellido: document.getElementById("apellido").value,
+        nombre_usuario: document.getElementById("nombre_usuario").value,
+        contrasena: document.getElementById("contraseña").value, // Asegurate que el input del HTML tenga este id
+        fecha_nac: document.getElementById("fecha_nacimiento").value,
+        dni: document.getElementById("dni").value,
+        direccion: document.getElementById("direccion").value,
+        lugar_trabajo: document.getElementById("zona_trabajo").value, // O el id que uses para zona/lugar de trabajo
+        especialidad: document.getElementById("ocupacion").value,      // De qué trabaja / especialidad
+        rol: "Operario" // O el rol que corresponda por defecto
+    };
+
+    try {
+        const respuesta = await fetch(API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datosNuevoUsuario)
         });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert(resultado.mensaje);
+            // Una vez registrado con éxito, lo mandamos al login para que ingrese
+            window.location.href = "index.html"; 
+        } else {
+            alert("Error: " + resultado.error);
+        }
+    } catch (error) {
+        console.error("Error de conexión:", error);
+        alert("No se pudo conectar con el servidor.");
+    }
+});
+        // Este script evita que la página se recargue y muestra un mensaje al enviar
+        // document.getElementById('registroForm').addEventListener('submit', function(event) {
+        //     event.preventDefault(); 
+        //     alert('¡Datos guardados correctamente!');
+        //     this.reset(); // Limpia el formulario
+        // });
     </script>
 
 </body>

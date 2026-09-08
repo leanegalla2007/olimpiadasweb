@@ -32,12 +32,6 @@ db.getConnection((err, connection) => {
   }
 });
 
-// 3. Inyectamos la db en cada petición para que tus rutas puedan usarla
-// app.use((req, next) => {
-//   req.db = db;
-//   next();
-// });
-
 // Importas y conectas tus rutas DESPUÉS de inyectar la DB
 const parqueRoutes = require("./routes/parqueRoutes");
 app.use("/api", parqueRoutes);

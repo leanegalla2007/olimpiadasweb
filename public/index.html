@@ -4,61 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 350px;
-        }
-        .login-container h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff; /* Color azul para diferenciarlo del botón verde de guardar */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            background-color: #0056b3;
-        }
-        </style>
-        
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body class="IniciarSesionStyle">
 
@@ -67,13 +14,13 @@
         <form id="loginForm">
             
             <div class="form-group">
-                <label for="usuario">Usuario</label>
+                <label for="nombre_usuario">Usuario</label>
                 <input type="text" id="usuario" name="usuario" required placeholder="Ingresá tu usuario">
             </div>
 
             <div class="form-group">
-                <label for="contrasena">Contraseña</label>
-                <input type="password" id="contrasena" name="contrasena" required placeholder="Ingresá tu contraseña">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseña" name="contrasena" required placeholder="Ingresá tu contraseña">
             </div>
 
             <button type="submit" class="btn-submit">Ingresar</button>
@@ -84,19 +31,23 @@
     </div>
 
 </body>
-            <script>
-                // Este script simula el inicio de sesión y te lleva a la otra página
-
-                document.getElementById("loginForm").addEventListener("submit", async function(event) {
+<script>
+    const API_URL = 'http://localhost:3000/api';           // Este script simula el inicio de sesión y te lleva a la otra página
+    
+    document.getElementById("loginForm").addEventListener("submit", async function(event) {
     event.preventDefault(); // Evita que la página se recargue sola
 
     // Capturamos los valores de los inputs
     const usuarioInput = document.getElementById("usuario").value;
-    const contrasenaInput = document.getElementById("contrasena").value;
+    const contrasenaInput = document.getElementById("contraseña").value;
+    const credenciales = {
+        nombre_usuario: document.getElementById("usuario").value, // Asegurate que el ID en tu input sea 'usuario'
+        contraseña: document.getElementById("contraseña").value     // Asegurate que el ID en tu input sea 'contrasena'
+    };
 
     try {
         // Hacemos la petición POST a nuestra API
-        const respuesta = await fetch("/api/registro", {
+        const respuesta = await fetch(`${API_URL}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -112,7 +63,7 @@
         if (respuesta.ok) {
             alert(resultado.mensaje);
             // Si querés que vaya a la otra página después de registrarse:
-            window.location.href = "formulario.html"; 
+            window.location.href = "configuracion.html"; 
         } else {
             alert("Error: " + resultado.error);
         }
@@ -122,12 +73,12 @@
         alert("No se pudo conectar con el servidor.");
     }
 });
-                document.getElementById('registroForm').addEventListener('submit', function(event) {
-                    event.preventDefault(); // Evita que la página intente enviar datos a un servidor inexistente
+document.getElementById('registroForm').addEventListener('submit', function(event) {
+event.preventDefault(); // Evita que la página intente enviar datos a un servidor inexistente
                     
                     // Acá hacemos la "conexión". Al hacer clic, te redirige al formulario.
                     // Es importante que el otro archivo se llame exactamente 'formulario.html'
-                    window.location.href = 'registro.html'; 
-                });
-            </script>
+window.location.href = 'registro.html'; 
+});
+</script>
 </html>
