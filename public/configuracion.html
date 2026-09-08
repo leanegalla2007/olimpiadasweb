@@ -31,7 +31,7 @@
         </header>
         <div class="content">
             <div style="margin-bottom: 20px;">
-                <a href="nueva-area.html" class="btn btn-primary" style="text-decoration: none;">+ Nueva Área / Invernadero</a>
+                <a href="nueva-area.html" class="btn btn-primary" style="text-decoration: none;" data-bs-target="#modalArea">+ Nueva Área / Invernadero</a>
                 <button type="submit" class="btn btn-primary" style="text-decoration: none;" onclick="cargarLista()">Actualizar</button>
             </div>
             <div class="table-container">
@@ -70,8 +70,9 @@
 
                     fila.innerHTML = `
                     <td>${areas.id}</td>
-                    <td>${areas.nombre}</td>
+                    <td>${areas.nombre_area}</td>
                     <td>${areas.origen}</td>
+                     <td>${areas.admin}</td>
                     <td>${areas.sensores}</td>
                     `
                     tabla.appendChild(fila)

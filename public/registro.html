@@ -4,67 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Datos</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .form-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .form-container h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-            font-weight: bold;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box; /* Asegura que el padding no desborde */
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-submit:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
+        <link rel="stylesheet" href="style.css">
+<body class="registrostyle">
 
     <div class="form-container">
         <h2>Ingreso de Datos</h2>
         <form id="registroForm">
-            
+            <a href="index.html" class="btn btn-primary" style="text-decoration: none;" data-bs-target="#modalArea">Volver a Iniciar Sesión</a>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan">
@@ -98,6 +44,16 @@
             <div class="form-group">
                 <label for="ocupacion">De qué trabaja</label>
                 <input type="text" id="ocupacion" name="ocupacion" required placeholder="Profesión u oficio">
+            </div>
+
+            <div class="form-group">
+                <label for="ocupacion">Nombre de usuario</label>
+                <input type="text" id="ocupacion" name="ocupacion" required placeholder="Nombre para iniciar sesión">
+            </div>
+
+             <div class="form-group">
+                <label for="ocupacion">Contraseña</label>
+                <input type="text" id="ocupacion" name="ocupacion" required placeholder="Contraseña para crear cuenta">
             </div>
 
             <button type="submit" class="btn-submit">Guardar Datos</button>

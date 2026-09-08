@@ -60,7 +60,7 @@
         </style>
         
 </head>
-<body>
+<body class="IniciarSesionStyle">
 
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
@@ -86,6 +86,42 @@
 </body>
             <script>
                 // Este script simula el inicio de sesión y te lleva a la otra página
+
+                document.getElementById("loginForm").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Evita que la página se recargue sola
+
+    // Capturamos los valores de los inputs
+    const usuarioInput = document.getElementById("usuario").value;
+    const contrasenaInput = document.getElementById("contrasena").value;
+
+    try {
+        // Hacemos la petición POST a nuestra API
+        const respuesta = await fetch("/api/registro", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario: usuarioInput,
+                contrasena: contrasenaInput
+            })
+        });
+
+        const resultado = await respuesta.json();
+
+        if (respuesta.ok) {
+            alert(resultado.mensaje);
+            // Si querés que vaya a la otra página después de registrarse:
+            window.location.href = "formulario.html"; 
+        } else {
+            alert("Error: " + resultado.error);
+        }
+
+    } catch (error) {
+        console.error("Error de conexión:", error);
+        alert("No se pudo conectar con el servidor.");
+    }
+});
                 document.getElementById('registroForm').addEventListener('submit', function(event) {
                     event.preventDefault(); // Evita que la página intente enviar datos a un servidor inexistente
                     

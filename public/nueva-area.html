@@ -36,11 +36,11 @@
             <div class="form-container">
                 <form id="form-area" onsubmit="registrarArea(event)">
                     <div class="form-group">
-                        <label>Nombre del Área / Invernadero:</label>
+                        <label for="nombre_area">Nombre del Área / Invernadero:</label>
                         <input type="text" id="area-nombre" placeholder="Ej: Invernadero 2" required>
                     </div>
                     <div class="form-group">
-                        <label>Categoría de Origen:</label>
+                        <label for="origen">Categoría de Origen:</label>
                         <select id="area-origen">
                             <option>Invernaderos</option>
                             <option>Hidroponia</option>
@@ -48,11 +48,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Administrador Asignado:</label>
+                        <label for="admin">Administrador Asignado:</label>
                         <input type="text" id="area-admin" placeholder="Nombre del Administrador" required>
                     </div>
                     <div class="form-group">
-                        <label>Sensores Arduino Asociados:</label>
+                        <label for="sensores">Sensores Arduino Asociados:</label>
                         <input type="text" id="area-sensores" placeholder="Ej: DHT22 (Temp/Humedad)" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Crear Área</button>
@@ -66,14 +66,36 @@
         document.getElementById("form-area").addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const nombre = document.getElementById('nombre').value;
+            const nombre = document.getElementById('nombre_area').value;
             const origen = document.getElementById('origen').value;
             const admin = document.getElementById('admin').value;
             const sensores = document.getElementById('sensores').value;
 
-            
-        })
+            try {
+                const respuesta = await fetch (API_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({nombre, origen, admin, sensores})
+                });
+                if (respuesta.ok) {
+                    alert ('Docente agregado a la lista con exito');
+                    document.getElementById('form-group').reset();
 
+                    const modalArea = bootstrap.Modal.getInstance(document.getElementById('modalArea'));
+                    modalElemento.hide();
+
+                    cargarLista();
+                } else {
+                    const errorData = await respuesta.json();
+                    alert('Error: ' + errorData.message);  
+                }
+            } catch (error) {
+                console.error(error);
+                alert('No se pudo enviar el elemento al servidor');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', cargarLista);
     </script>
 </body>
 </html>
