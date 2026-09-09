@@ -3,6 +3,6 @@
         "id": 1,
         "nombre_usuario": "Leandro",
         "contraseña": "123456", 
-        "rol": "admin"
+        "rol": "Administrador"
     }
 ]

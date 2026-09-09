@@ -36,24 +36,32 @@
             <div class="form-container">
                 <form onsubmit="registrarEmpleado(event)">
                     <div class="form-group">
-                        <label>Nombre y Apellido:</label>
-                        <input type="text" id="emp-nombre" placeholder="Ej: Lauryn Rivero" required>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" placeholder="Ej: Lauryn" required>
+                    </div>
+                    <div>
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" placeholder="Ej: Riveros" required>
                     </div>
                     <div class="form-group">
-                        <label>DNI:</label>
-                        <input type="text" id="emp-dni" placeholder="Ej: 41.234.567" required>
+                        <label for="dni">DNI:</label>
+                        <input type="text" id="dni" placeholder="Ej: 41.234.567" required>
                     </div>
                     <div class="form-group">
-                        <label>Tarea Asignada en el Parque:</label>
-                        <input type="text" id="emp-tarea" placeholder="Ej: Control de Riego y Sensores" required>
+                        <label for="especialidad">Tarea Asignada en el Parque:</label>
+                        <input type="text" id="tarea" placeholder="Ej: Control de Riego y Sensores" required>
                     </div>
                     <div class="form-group">
-                        <label>Horario de Trabajo:</label>
-                        <input type="text" id="emp-horario" placeholder="Ej: 10:00 a 14:00 hs" required>
+                        <label for="horario_entrada">Horario de Entrada:</label>
+                        <input type="time" id="horario_entrada" placeholder="Ej: 10:00 hs" required>
                     </div>
                     <div class="form-group">
-                        <label>Tipo de Usuario / Jerarquía:</label>
-                        <select id="emp-tipo">
+                        <label for="horario_salida">Horario de Salida:</label>
+                        <input type="time" id="horario_salida" placeholder="Ej: 14:00 hs" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rol">Tipo de Usuario / Jerarquía:</label>
+                        <select id="tipo">
                             <option>Genérico / Empleado</option>
                             <option>Administrador</option>
                         </select>
@@ -64,6 +72,40 @@
             </div>
         </div>
     </main>
-    <script src="js/app.js"></script>
+    <script src="js/app.js">
+        const API_URL = 'http://localhost:3000/api/empleados'; // Asegurate de definir tu URL base o completa
+
+document.getElementById("form-area").addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const origen = document.getElementById('origen').value;
+    const admin = document.getElementById('admin').value;
+    const sensores = document.getElementById('sensores').value;
+
+    try {
+        const respuesta = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, origen, admin, sensores })
+        });
+
+        if (respuesta.ok) {
+            alert('¡Área agregada con éxito!');
+            
+            // Como es un HTML aparte, lo mandamos de vuelta a la pantalla de configuración
+            window.location.href = "configuracion.html"; 
+        } else {
+            const errorData = await respuesta.json();
+            alert('Error: ' + (errorData.error || errorData.message));  
+        }
+    } catch (error) {
+        console.error(error);
+        alert('No se pudo conectar con el servidor.');
+    }
+});
+
+
+    </script>
 </body>
 </html>

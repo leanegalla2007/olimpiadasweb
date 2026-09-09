@@ -46,12 +46,50 @@
                         </tr>
                     </thead>
                     <tbody id="tabla-empleados">
-                        <!-- Se llena dinámicamente -->
+                        <tr>
+                            <td colspan="8" class="text-center">Cargando datos de empleados...</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
-    <script src="js/app.js"></script>
+    <script src="js/app.js">
+        const API_URL_USUARIOS = 'http://localhost:3000/api/usuarios';
+
+async function cargarEmpleados() {
+    try {
+        const respuesta = await fetch(API_URL_USUARIOS);
+        const empleados = await respuesta.json();
+
+        const tbody = document.getElementById('tabla-empleados');
+        tbody.innerHTML = '';
+
+        if (empleados.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center">No hay empleados registrados</td></tr>';
+            return;
+        }
+
+        empleados.forEach(emp => {
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${emp.nombre || '-'}</td>
+                <td>${emp.apellido || '-'}</td>
+                <td>${emp.dni || '-'}</td>
+                <td>${emp.especialidad || 'Sin asignar'}</td>
+                <td>${emp.horario || 'No especificado'}</td>
+                <td>${emp.tipo_usuario || emp.rol || 'Empleado'}</td>
+            `;
+            tbody.appendChild(fila);
+        });
+
+    } catch (error) {
+        console.error("Error al obtener empleados:", error);
+    }
+}
+
+window.addEventListener('DOMContentLoaded', cargarEmpleados);
+
+    </script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const llamadasController = require("../controller/llamadasController");
+const llamadasController = require("../controllers/llamadasController");
 
-router.post("/llamadas", llamadasController.registrarLlamada);
+router.post("/lecturas", llamadasController.registrarLlamada);
 router.get("/llamadas", llamadasController.obtenerLlamada)
+
+module.exports = router;
