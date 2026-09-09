@@ -52,7 +52,7 @@
 
             <div style="margin-bottom: 25px; display: flex; gap: 12px;">
                 <a href="nuevo-evento.html" class="btn btn-primary">➕ Registrar Nuevo Evento</a>
-                <a href="index.html" class="btn btn-secondary" onclick="actualizar()">🔄 Actualizar Sensores</a>
+                <a class="btn btn-secondary" onclick="actualizar()">🔄 Actualizar Sensores</a>
             </div>
 
             <div class="table-container">
@@ -65,7 +65,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tabla-llamadas">
                         <tr>
                             <td>Invernadero Principal</td>
                             <td>DHT22 (Temp/Hum)</td>
@@ -84,4 +84,60 @@
         </div>
     </main>
 </body>
+<script>
+    const API_URL_LLAMADOS = 'http://localhost:3000/api/llamados';
+
+async function cargarLlamados() {
+    try {
+        const respuesta = await fetch(API_URL_LLAMADOS);
+        const llamados = await respuesta.json();
+
+        const tbody = document.getElementById('tabla-llamadas');
+        const contadorActivos = document.getElementById('contador-activos');
+        
+        tbody.innerHTML = '';
+        
+        if (llamados.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="text-center">No hay llamados registrados</td></tr>';
+            contadorActivos.textContent = '0 Activos';
+            return;
+        }
+
+        let activosCount = 0;
+
+        llamados.forEach(llamado => {
+            // Contamos cuántos están activos para el indicador de arriba
+            if (llamado.estado === 'Activo') {
+                activosCount++;
+            }
+
+            const fila = document.createElement('tr');
+            
+            // Definimos el estilo según el estado
+            const esActivo = llamado.estado === 'Activo';
+            const claseEstado = esActivo ? 'text-danger fw-bold' : 'text-success fw-bold';
+            const botonAccion = esActivo 
+                ? `<button class="btn btn-danger btn-sm" onclick="atenderLlamado(${llamado.id})">Atender</button>`
+                : `<span class="text-muted">Resuelto</span>`;
+
+            fila.innerHTML = `
+                <td>${llamado.lugar_origen}</td>
+                <td>${llamado.tipo_emergencia}</td>
+                <td><span class="${claseEstado}">${llamado.estado}</span></td>
+                <td>${botonAccion}</td>
+            `;
+            tbody.appendChild(fila);
+        });
+
+        // Actualizamos el número grande del contador superior
+        contadorActivos.textContent = `${activosCount} Activo${activosCount === 1 ? '' : 's'}`;
+
+    } catch (error) {
+        console.error("Error al cargar los llamados:", error);
+    }
+}
+
+// Ejecutar al cargar la página
+window.addEventListener('DOMContentLoaded', cargarLlamados);
+</script>
 </html>

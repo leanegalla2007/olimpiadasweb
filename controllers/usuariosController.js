@@ -62,16 +62,17 @@ const registrarUsuario = async (req, res) => {
 
 const iniciarSesion = async (req, res) => {
     try {
-        const { nombre_usuario, contraseña } = req.body;
+        console.log("Datos recibidos en el backend:", req.body);
+        const { usuario, contrasena } = req.body;
 
         // Validamos que no vengan vacíos
-        if (!nombre_usuario || !contraseña) {
+        if (!usuario || !contrasena) {
             return res.status(400).json({ error: "Completá todos los campos" });
         }
 
         // Buscamos al usuario en la base de datos
         const sql = "SELECT * FROM usuarios WHERE nombre_usuario = ? AND contraseña = ?";
-        const [filas] = await db.query(sql, [nombre_usuario, contraseña]);
+        const [filas] = await db.query(sql, [usuario, contrasena]);
 
         // Si no encuentra ninguna coincidencia, las credenciales son incorrectas
         if (filas.length === 0) {
@@ -87,9 +88,21 @@ const iniciarSesion = async (req, res) => {
     }
 };
 
+const obtenerUsuarios = async (req, res) => {
+    try {
+        // Traemos todos los usuarios (o podés filtrar por rol si querés: WHERE rol = 'Administrador')
+        const [filas] = await db.query("SELECT id, nombre, apellido FROM usuarios");
+        res.json(filas);
+    } catch (error) {
+        console.error("Error al obtener usuarios:", error);
+        res.status(500).json({ error: "Error al obtener usuarios" });
+    }
+};
+
 // Y no te olvides de agregarlo en el module.exports abajo de todo:
 module.exports = {
     registrarEmpleado,
     registrarUsuario,
-    iniciarSesion
+    iniciarSesion,
+    obtenerUsuarios
 };

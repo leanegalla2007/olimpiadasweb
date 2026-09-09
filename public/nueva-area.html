@@ -36,24 +36,26 @@
             <div class="form-container">
                 <form id="form-area" onsubmit="registrarArea(event)">
                     <div class="form-group">
-                        <label for="nombre_area">Nombre del Área / Invernadero:</label>
-                        <input type="text" id="area-nombre" placeholder="Ej: Invernadero 2" required>
+                        <label for="nombre">Nombre del Área / Invernadero:</label>
+                        <input type="text" id="nombre" placeholder="Ej: Invernadero 2" required>
                     </div>
                     <div class="form-group">
                         <label for="origen">Categoría de Origen:</label>
-                        <select id="area-origen">
+                        <select id="origen">
                             <option>Invernaderos</option>
                             <option>Hidroponia</option>
                             <option>Cultivos Externos</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="admin">Administrador Asignado:</label>
-                        <input type="text" id="area-admin" placeholder="Nombre del Administrador" required>
+                    <div class="mb-3">
+                        <label for="admin" class="form-label">Administrador Asignado</label>
+                        <select id="admin" class="form-select" required>
+                            <option value="" disabled selected>Seleccione un administrador...</option>
+                        </select>   
                     </div>
                     <div class="form-group">
                         <label for="sensores">Sensores Arduino Asociados:</label>
-                        <input type="text" id="area-sensores" placeholder="Ej: DHT22 (Temp/Humedad)" required>
+                        <input type="text" id="sensores" placeholder="Ej: DHT22 (Temp/Humedad)" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Crear Área</button>
                     <a href="configuracion.html" class="btn btn-secondary" style="margin-left: 10px; text-decoration: none;">Cancelar</a>
@@ -61,41 +63,62 @@
             </div>
         </div>
     </main>
-    <script src="js/app.js"></script>
     <script>
-        document.getElementById("form-area").addEventListener('submit', async (e) => {
-            e.preventDefault();
+        const API_URL = 'http://localhost:3000/api/areas'; // Asegurate de definir tu URL base o completa
 
-            const nombre = document.getElementById('nombre_area').value;
-            const origen = document.getElementById('origen').value;
-            const admin = document.getElementById('admin').value;
-            const sensores = document.getElementById('sensores').value;
+document.getElementById("form-area").addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-            try {
-                const respuesta = await fetch (API_URL, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({nombre, origen, admin, sensores})
-                });
-                if (respuesta.ok) {
-                    alert ('Docente agregado a la lista con exito');
-                    document.getElementById('form-group').reset();
+    const nombre = document.getElementById('nombre').value;
+    const origen = document.getElementById('origen').value;
+    const admin = document.getElementById('admin').value;
+    const sensores = document.getElementById('sensores').value;
 
-                    const modalArea = bootstrap.Modal.getInstance(document.getElementById('modalArea'));
-                    modalElemento.hide();
-
-                    cargarLista();
-                } else {
-                    const errorData = await respuesta.json();
-                    alert('Error: ' + errorData.message);  
-                }
-            } catch (error) {
-                console.error(error);
-                alert('No se pudo enviar el elemento al servidor');
-            }
+    try {
+        const respuesta = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombre, origen, admin, sensores })
         });
 
-        window.addEventListener('DOMContentLoaded', cargarLista);
-    </script>
+        if (respuesta.ok) {
+            alert('¡Área agregada con éxito!');
+            
+            // Como es un HTML aparte, lo mandamos de vuelta a la pantalla de configuración
+            window.location.href = "configuracion.html"; 
+        } else {
+            const errorData = await respuesta.json();
+            alert('Error: ' + (errorData.error || errorData.message));  
+        }
+    } catch (error) {
+        console.error(error);
+        alert('No se pudo conectar con el servidor.');
+    }
+});
+
+// Función para cargar los usuarios en el select al abrir la página
+async function cargarUsuariosEnSelect() {
+    try {
+        const respuesta = await fetch('http://localhost:3000/api/usuarios');
+        const usuarios = await respuesta.json();
+
+        const selectAdmin = document.getElementById('admin');
+
+        usuarios.forEach(user => {
+            const option = document.createElement('option');
+            // Guardamos el nombre completo (o el ID, según prefieras mostrar)
+            const nombreCompleto = `${user.nombre} ${user.apellido}`;
+            option.value = nombreCompleto; 
+            option.textContent = nombreCompleto;
+            selectAdmin.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error al cargar los administradores:", error);
+    }
+}
+
+// Ejecutar al cargar la página
+window.addEventListener('DOMContentLoaded', cargarUsuariosEnSelect);
+</script>
 </body>
 </html>

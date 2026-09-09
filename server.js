@@ -36,5 +36,11 @@ db.getConnection((err, connection) => {
 const parqueRoutes = require("./routes/parqueRoutes");
 app.use("/api", parqueRoutes);
 
+const areasRoutes = require("./routes/areasRoutes");
+app.use("/api", areasRoutes);
+
+const llamadasRoutes = require("./routes/llamadasRoutes");
+app.use("/api", llamadasRoutes);
+
 // Iniciamos el servidor
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
